@@ -1,15 +1,11 @@
-﻿Build started 18/02/2015 22:57:51.
+﻿Build started 19/02/2015 20:05:14.
      1>Project "C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\nclgl\nclgl.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _DEBUG /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameTimer.cpp Keyboard.cpp Matrix3.cpp Matrix4.cpp Mouse.cpp OGLRenderer.cpp Quaternion.cpp Window.cpp
-         Window.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _DEBUG /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Matrix3.cpp Matrix4.cpp OGLRenderer.cpp Quaternion.cpp
          Quaternion.cpp
          OGLRenderer.cpp
-         Mouse.cpp
          Matrix4.cpp
          Matrix3.cpp
-         Keyboard.cpp
-         GameTimer.cpp
          Generating Code...
        Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\Debug\nclgl.lib" /NOLOGO Debug\GameTimer.obj
@@ -25,4 +21,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:07.58
+Time Elapsed 00:00:04.21

@@ -78,7 +78,7 @@ void Mesh::Draw()	{
 	glBindVertexArray(0);	
 }
 
-Mesh*	Mesh::LoadMeshFile(const string &filename)
+Mesh*	Mesh::LoadMeshFile(const string &filename, Vector4 colour)
 {
 	using namespace std;
 
@@ -149,27 +149,24 @@ Mesh*	Mesh::LoadMeshFile(const string &filename)
 	m->numVertices = vertexIndices.size();
 	m->vertices = new Vector3[m->numVertices];
 	m->textureCoords = new Vector2[m->numVertices];
+	m->colours = new Vector4[m->numVertices];
 	m->normals = new Vector3[m->numVertices];
 
-	for (unsigned int i = 0; i < vertexIndices.size(); i++)
+	for (unsigned int i = 0; i < vertexIndices.size(); ++i)
 	{
 		unsigned int vertexIndex = vertexIndices[i];
 		Vector3 vertex = temp_vertices[vertexIndex - 1];
 		m->vertices[i] = vertex;
-	}
 
-	for (unsigned int i = 0; i < uvIndices.size(); i++)
-	{
 		unsigned int uvIndex = uvIndices[i];
 		Vector2 uv = temp_uvs[uvIndex - 1];
 		m->textureCoords[i] = uv;
-	}
 
-	for (unsigned int i = 0; i < normalIndices.size(); i++)
-	{
 		unsigned int normalIndex = normalIndices[i];
 		Vector3 normal = temp_normals[normalIndex - 1];
 		m->normals[i] = normal;
+
+		m->colours[i] = colour;
 	}
 
 	m->BufferData();
@@ -236,6 +233,16 @@ void	Mesh::BufferData()	{
 		glBufferData(GL_ARRAY_BUFFER, numVertices*sizeof(Vector4), colours, GL_STATIC_DRAW);
 		glVertexAttribPointer(COLOUR_BUFFER, 4, GL_FLOAT, GL_FALSE, 0, 0); 
 		glEnableVertexAttribArray(COLOUR_BUFFER);
+	}
+
+	//buffer normals data
+	if (normals)
+	{
+		glGenBuffers(1, &bufferObject[NORMAL_BUFFER]);
+		glBindBuffer(GL_ARRAY_BUFFER, bufferObject[NORMAL_BUFFER]);
+		glBufferData(GL_ARRAY_BUFFER, numVertices*sizeof(Vector3), normals, GL_STATIC_DRAW);
+		glVertexAttribPointer(NORMAL_BUFFER, 3, GL_FLOAT, GL_FALSE, 0, 0);
+		glEnableVertexAttribArray(NORMAL_BUFFER);
 	}
 
 	//buffer index data

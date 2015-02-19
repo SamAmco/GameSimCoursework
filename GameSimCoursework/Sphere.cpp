@@ -4,8 +4,8 @@
 Sphere::Sphere(Renderer& renderer, float size) :
 renderer(renderer), size(size)
 {
-	mesh = Mesh::LoadMeshFile("sphere.obj");
-	shader = new Shader("BasicVert.glsl", "WhiteFrag.glsl");
+	mesh = Mesh::LoadMeshFile("sphere.obj", Vector4(0.75, 0.75, 0.75, 1));
+	shader = new Shader("Shaders/PhongColVert.glsl", "Shaders/PhongColFrag.glsl");
 	if (shader->UsingDefaultShader())
 	{
 		cout << "Warning: Using default shader! Your shader probably hasn't worked..." << endl;

@@ -5,7 +5,7 @@ Cube::Cube(Renderer& renderer, float size) :
 renderer(renderer), size(size)
 {
 	mesh = Mesh::LoadMeshFile("cube.obj");
-	shader = new Shader("BasicVert.glsl", "WhiteFrag.glsl", "WireframeGeom.glsl");
+	shader = new Shader("Shaders/BasicVert.glsl", "Shaders/WhiteFrag.glsl", "Shaders/WireframeGeom.glsl");
 	if (shader->UsingDefaultShader())
 	{
 		cout << "Warning: Using default shader! Your shader probably hasn't worked..." << endl;

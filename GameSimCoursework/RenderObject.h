@@ -23,7 +23,7 @@ public:
 	void	SetModelMatrix(Matrix4 mat) {modelMatrix = mat;}
 	Matrix4 GetModelMatrix()	const	{return modelMatrix;}
 
-	virtual void Update(float msec);
+	virtual void Update(float sec);
 
 	virtual void Draw() const;
 

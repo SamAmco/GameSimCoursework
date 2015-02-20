@@ -6,7 +6,7 @@ class Cube
 public:
 	Cube(Renderer& renderer, float size);
 
-	void Update(float msec);
+	void Update(float sec);
 
 	~Cube();
 private:

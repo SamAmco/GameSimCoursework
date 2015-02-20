@@ -21,7 +21,7 @@ RenderObject::~RenderObject(void)
 }
 
 
-void RenderObject::Update(float msec) {
+void RenderObject::Update(float sec) {
 	if(parent) {
 		worldTransform = parent->modelMatrix * modelMatrix;
 		//worldTransform = modelMatrix * parent->modelMatrix;
@@ -31,7 +31,7 @@ void RenderObject::Update(float msec) {
 	}
 
 	for(vector<RenderObject*>::const_iterator i = children.begin(); i != children.end(); ++i ) {
-		(*i)->Update(msec);
+		(*i)->Update(sec);
 	}
 }
 

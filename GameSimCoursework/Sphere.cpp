@@ -1,7 +1,7 @@
 #include "Sphere.h"
 
 
-Sphere::Sphere(Renderer& renderer, float size) :
+Sphere::Sphere(Renderer& renderer, PhysicsEngine& physicsEngine, float size) :
 renderer(renderer), size(size)
 {
 	mesh = Mesh::LoadMeshFile("sphere.obj", Vector4(0.75, 0.75, 0.75, 1));
@@ -13,12 +13,22 @@ renderer(renderer), size(size)
 		std::cin.get();
 	}
 	renderObject = RenderObject(mesh, shader);
-	renderObject.SetModelMatrix(Matrix4::Translation(Vector3(0, 0, -10)) * Matrix4::Scale(Vector3(size, size, size)));
+
+	rigidBody = RigidBody();
+	rigidBody.position = PhysVector3(0, 0, -10);
+	rigidBody.velocity = PhysVector3(0,0,0);
+	rigidBody.acceleration = PhysVector3(1,0,0);
+
 	renderer.AddRenderObject(renderObject);
+	RigidBody* rigidBodyP = &rigidBody;
+	physicsEngine.AddRigidBody(rigidBodyP);
 }
 
-void Sphere::Update(float msec)
+void Sphere::Update(float sec)
 {
+	renderObject.SetModelMatrix(Matrix4::Translation(
+		Vector3(rigidBody.position.getX(), rigidBody.position.getY(), rigidBody.position.getZ()))
+		* Matrix4::Scale(Vector3(size, size, size)));
 }
 
 

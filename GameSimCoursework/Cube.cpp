@@ -17,7 +17,7 @@ renderer(renderer), size(size)
 	renderer.AddRenderObject(renderObject);
 }
 
-void Cube::Update(float msec)
+void Cube::Update(float sec)
 {
 	//renderObject.SetModelMatrix(renderObject.GetModelMatrix() * Matrix4::Rotation(0.1f * msec, Vector3(1, 1, 1)));
 }

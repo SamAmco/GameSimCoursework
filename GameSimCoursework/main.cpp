@@ -2,6 +2,7 @@
 #include "RenderObject.h"
 #include "Cube.h"
 #include "Sphere.h"
+#include "PhysicsEngine.h"
 
 #pragma comment(lib, "nclgl.lib")
 
@@ -15,25 +16,26 @@ void main(void)
 	r.SetProjectionMatrix(Matrix4::Perspective(1, 100, 1.33f, 45.0f));
 	r.SetMainLight(lightCol, lightPos, lightRad);
 	r.SetViewMatrix(Matrix4::BuildViewMatrix(Vector3(0, 0, 0), Vector3(0, 0, -10)));
+	PhysicsEngine physicsEngine = PhysicsEngine();
 
 	Cube cube = Cube(r, 2);
-	Sphere sphere = Sphere(r, 1);
+	Sphere sphere = Sphere(r, physicsEngine, 1);
 
-	while(w.UpdateWindow()) 
+	while(w.UpdateWindow())
 	{
-		float msec = w.GetTimer()->GetTimedMS();
-
+		float sec = w.GetTimer()->GetTimedMS() / 1000.0f;
 		//Spin the light
 		//Matrix4 p = Matrix4();
 		//p.ToIdentity();
 		//p.SetPositionVector(lightPos);
 		//lightPos = (Matrix4::Rotation(0.1f * msec, Vector3(0, 1, 0)) * p).GetPositionVector();
 		//r.SetMainLight(lightCol, lightPos, lightRad);
+		physicsEngine.Update(sec);
 
-		cube.Update(msec);
-		sphere.Update(msec);
+		cube.Update(sec);
+		sphere.Update(sec);
 
-		r.UpdateScene(msec);
+		r.UpdateScene(sec);
 		r.ClearBuffers();
 		r.RenderScene();
 		r.SwapBuffers();

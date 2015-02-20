@@ -12,3 +12,9 @@ PhysVector3 PhysicsMaths::calculateDisplacement(PhysVector3& initialVelocity, Ph
 {
 	return (initialVelocity * time) + ((acceleration * 0.5f) * powf(time, 2));
 }
+
+void PhysicsMaths::semiImplicitEuler(PhysVector3& velocity, PhysVector3& acceleration, PhysVector3& displacement, float time)
+{
+	velocity = velocity + (acceleration * time);
+	displacement = displacement + (velocity * time);
+}

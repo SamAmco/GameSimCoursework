@@ -25,12 +25,6 @@ void main(void)
 	while(w.UpdateWindow())
 	{
 		float sec = w.GetTimer()->GetTimedMS() / 1000.0f;
-		//Spin the light
-		//Matrix4 p = Matrix4();
-		//p.ToIdentity();
-		//p.SetPositionVector(lightPos);
-		//lightPos = (Matrix4::Rotation(0.1f * msec, Vector3(0, 1, 0)) * p).GetPositionVector();
-		//r.SetMainLight(lightCol, lightPos, lightRad);
 		physicsEngine.Update(sec);
 
 		cube.Update(sec);

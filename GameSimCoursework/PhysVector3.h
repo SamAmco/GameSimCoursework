@@ -6,6 +6,8 @@ class PhysVector3
 {
 public:
 
+	PhysVector3() : x(0), y(0), z(0){}
+
 	PhysVector3(const float x, const float y, const float z)
 	{
 		this->x = x;

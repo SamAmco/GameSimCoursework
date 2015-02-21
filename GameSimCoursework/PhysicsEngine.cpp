@@ -34,15 +34,12 @@ void PhysicsEngine::collisionDetection(float sec)
 		{
 			if (r1 == r2)
 				break;
-			//squaring d is more efficient than finding the square root of the sqrMagnitude
-			float d = r1->sphereCollider.radius + r2->sphereCollider.radius;
-			PhysVector3 norm = r1->position - r2->position;
-			if (norm.sqrMagnitude() < d * d)
+
+			PhysVector3 collisionPoint;
+
+			if (r1->sphereCollider.Collides(collisionPoint, r2->sphereCollider, r1->position, r2->position))
 			{
-				float p = (r1->sphereCollider.radius + r2->sphereCollider.radius) - d;
-				norm.normalise();
-				PhysVector3 colPoint = r1->position - (norm * (r1->sphereCollider.radius - p));
-				cout << "Sphere Sphere Collision " << sec << endl;
+				cout << "Sphere sphere collision: " << collisionPoint << endl;
 			}
 		}
 	}

@@ -20,17 +20,14 @@ public:
 	void setX(float x)
 	{
 		this->x = x;
-		changed = true;
 	}
 	void setY(float y)
 	{
 		this->y = y;
-		changed = true;
 	}
 	void setZ(float z)
 	{
 		this->z = z;
-		changed = true;
 	}
 
 	PhysVector3 normalise()
@@ -51,15 +48,14 @@ public:
 		return PhysVector3(0, 0, 0);
 	}
 
+	float sqrMagnitude()
+	{
+		return (x*x) + (y*y) + (z*z);
+	}
+
 	float getMagnitude()
 	{
-		if (!changed)
-			return magnitude;
-		else
-		{
-			magnitude = sqrt((x*x) + (y*y) + (z*z));
-			return magnitude;
-		}
+		return sqrt((x*x) + (y*y) + (z*z));
 	}
 
 	void Invert() 
@@ -159,7 +155,5 @@ private:
 	float x;
 	float y;
 	float z;
-	float magnitude;
-	bool changed = true;
 };
 

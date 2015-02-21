@@ -2,7 +2,9 @@
 class SphereCollider
 {
 public:
-	SphereCollider();
-	~SphereCollider();
+	SphereCollider(float radius) : radius(radius) {} 
+	~SphereCollider() {}
+
+	float radius;
 };
 

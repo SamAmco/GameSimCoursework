@@ -4,10 +4,14 @@
 #include "PhysicsEngine.h"
 
 
-class Sphere
+class Sphere : RigidBody
 {
 public:
-	Sphere(Renderer& renderer, PhysicsEngine& physicsEngine, float size);
+	Sphere(Renderer& renderer, PhysicsEngine& physicsEngine, float size,
+		PhysVector3 position = PhysVector3::zero(),
+		PhysVector3 velocity = PhysVector3::zero(),
+		PhysVector3 acceleration = PhysVector3::zero(),
+		float mass = 1);
 
 	void Update(float sec);
 
@@ -15,10 +19,8 @@ public:
 
 private:
 	float size;
-	Renderer& renderer;
 	Mesh*	mesh;
 	Shader* shader;
 	RenderObject renderObject;
-	RigidBody rigidBody;
 };
 

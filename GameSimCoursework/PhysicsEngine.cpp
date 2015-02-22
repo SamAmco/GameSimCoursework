@@ -22,7 +22,7 @@ void PhysicsEngine::updatePositions(float sec)
 {
 	for each (RigidBody* r in rigidBodys)
 	{
-		PhysicsMaths::semiImplicitEuler(r->velocity, r->acceleration, r->position, sec);
+		PhysicsMaths::semiImplicitEuler(*r, sec);
 	}
 }
 
@@ -35,9 +35,9 @@ void PhysicsEngine::collisionDetection(float sec)
 			if (r1 == r2)
 				break;
 
-			PhysVector3 collisionPoint;
+			PhysVector3 collisionPoint = PhysVector3();
 
-			if (r1->sphereCollider.Collides(collisionPoint, r2->sphereCollider, r1->position, r2->position))
+			if (r1->collider->Collides(collisionPoint, *(r2->collider)))
 			{
 				cout << "Sphere sphere collision: " << collisionPoint << endl;
 			}

@@ -19,8 +19,9 @@ public:
 
 private:
 	float size;
-	Mesh*	mesh;
+	Mesh* mesh;
 	Shader* shader;
 	RenderObject renderObject;
+	SphereCollider sphereCollider;
 };
 

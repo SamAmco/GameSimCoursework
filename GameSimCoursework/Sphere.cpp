@@ -1,5 +1,5 @@
 #include "Sphere.h"
-
+#include "Collider.h"
 
 Sphere::Sphere(Renderer& renderer, 
 	PhysicsEngine& physicsEngine, 
@@ -8,7 +8,7 @@ Sphere::Sphere(Renderer& renderer,
 	PhysVector3 velocity,
 	PhysVector3 acceleration,
 	float mass) 
-	: RigidBody(position, acceleration, velocity, mass), size(size)
+	: RigidBody(acceleration, velocity, mass), size(size), sphereCollider(SphereCollider(size))
 {
 	mesh = Mesh::LoadMeshFile("sphere.obj", Vector4(0.75, 0.75, 0.75, 1));
 	shader = new Shader("Shaders/PhongColVert.glsl", "Shaders/PhongColFrag.glsl");
@@ -20,7 +20,11 @@ Sphere::Sphere(Renderer& renderer,
 	}
 	renderObject = RenderObject(mesh, shader);
 
-	sphereCollider = SphereCollider(size);
+	Matrix4 transform = Matrix4();
+	transform.SetPositionVector(Vector3(position.getX(), position.getY(), position.getZ()));
+	transform.SetScalingVector(Vector3(size, size, size));
+	sphereCollider.transform = transform;
+	collider = &sphereCollider;
 
 	renderer.AddRenderObject(renderObject);
 	RigidBody* rigidBodyP = this;
@@ -29,9 +33,7 @@ Sphere::Sphere(Renderer& renderer,
 
 void Sphere::Update(float sec)
 {
-	renderObject.SetModelMatrix(Matrix4::Translation(
-		Vector3(position.getX(), position.getY(), position.getZ()))
-		* Matrix4::Scale(Vector3(size, size, size)));
+	renderObject.SetModelMatrix(collider->transform);
 }
 
 

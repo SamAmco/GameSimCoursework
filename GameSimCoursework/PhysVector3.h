@@ -1,12 +1,20 @@
 #pragma once
 #include <iostream>
 #include <cmath>
+#include "../nclgl/Vector3.h"
 
 class PhysVector3
 {
 public:
 
 	PhysVector3() : x(0), y(0), z(0){}
+
+	PhysVector3(Vector3 vec)
+	{
+		this->x = vec.x;
+		this->y = vec.y;
+		this->z = vec.z;
+	}
 
 	PhysVector3(const float x, const float y, const float z)
 	{

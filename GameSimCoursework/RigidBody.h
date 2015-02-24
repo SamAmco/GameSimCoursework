@@ -12,7 +12,7 @@ public:
 		float mass = 1)
 			: acceleration(acceleration),
 			velocity(velocity),
-			mass(mass),
+			inverseMass(1.0f / mass),
 			collider(NULL),
 			isKinematic(false) {}
 
@@ -21,7 +21,7 @@ public:
 	PhysVector3 acceleration;
 	PhysVector3 velocity;
 	Collider* collider;
-	float mass;
+	float inverseMass;
 	bool isKinematic;
 };
 

@@ -8,8 +8,8 @@ class PhysicsMaths
 {
 public:
 	static void semiImplicitEuler(RigidBody& r, float time);
-	static bool CollidesSphereSphere(const SphereCollider& a, const SphereCollider& b, PhysVector3& collisionPoint);
-	static bool CollidesPlaneSphere(const SphereCollider& sphere, const PlaneCollider& plane, PhysVector3& collisionPoint);
+	static bool CollidesSphereSphere(const SphereCollider& a, const SphereCollider& b, PhysVector3& contactNormal);
+	static bool CollidesPlaneSphere(const SphereCollider& sphere, const PlaneCollider& plane, PhysVector3& contactNormal);
 private:
 	PhysicsMaths();
 	~PhysicsMaths();

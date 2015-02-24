@@ -22,24 +22,35 @@ void PhysicsEngine::updatePositions(float sec)
 {
 	for each (RigidBody* r in rigidBodys)
 	{
-		PhysicsMaths::semiImplicitEuler(*r, sec);
+		if (!r->isKinematic)
+			PhysicsMaths::semiImplicitEuler(*r, sec);
 	}
 }
 
 void PhysicsEngine::collisionDetection(float sec)
 {
-	for each (RigidBody* r1 in rigidBodys)
+
+	for (int x = 0; x < rigidBodys.size(); x++)
 	{
-		for each (RigidBody* r2 in rigidBodys)
+		for (int y = x + 1; y < rigidBodys.size(); y++)
 		{
-			if (r1 == r2)
-				break;
+			PhysVector3 contactNormal;
 
-			PhysVector3 collisionPoint = PhysVector3();
-
-			if (r1->collider->Collides(collisionPoint, *(r2->collider)))
+			if (rigidBodys[x]->collider->Collides(contactNormal, *(rigidBodys[y]->collider)))
 			{
-				cout << "collision: " << collisionPoint << endl;
+				cout << "collision: " << contactNormal << endl;
+				PhysVector3 vab = rigidBodys[x]->velocity + rigidBodys[y]->velocity;
+
+				float xInvMass = rigidBodys[x]->isKinematic ? 0 : rigidBodys[x]->inverseMass;
+				float yInvMass = rigidBodys[y]->isKinematic ? 0 : rigidBodys[y]->inverseMass;
+
+				float J = PhysVector3::dot(vab * -(1 + elasticity), contactNormal) /
+					(PhysVector3::dot(contactNormal, contactNormal) * (xInvMass + yInvMass));
+
+				rigidBodys[x]->velocity = rigidBodys[x]->velocity 
+					+ (contactNormal * (J * xInvMass));
+				rigidBodys[y]->velocity = rigidBodys[y]->velocity
+					- (contactNormal * (J * yInvMass));
 			}
 		}
 	}

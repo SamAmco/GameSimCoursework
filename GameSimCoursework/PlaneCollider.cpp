@@ -2,17 +2,17 @@
 #include "PhysicsMaths.h"
 
 
-bool PlaneCollider::Collides(PhysVector3& collisionPoint, const Collider& other) const
+bool PlaneCollider::Collides(PhysVector3& contactNormal, const Collider& other) const
 {
-	return other.Collides(collisionPoint, *this);
+	return other.Collides(contactNormal, *this);
 }
 
-bool PlaneCollider::Collides(PhysVector3& collisionPoint, const SphereCollider& other) const
+bool PlaneCollider::Collides(PhysVector3& contactNormal, const SphereCollider& other) const
 {
-	return PhysicsMaths::CollidesPlaneSphere(other, *this, collisionPoint);
+	return PhysicsMaths::CollidesPlaneSphere(other, *this, contactNormal);
 }
 
-bool PlaneCollider::Collides(PhysVector3& collisionPoint, const PlaneCollider& other) const
+bool PlaneCollider::Collides(PhysVector3& contactNormal, const PlaneCollider& other) const
 {
 	return false;
 }

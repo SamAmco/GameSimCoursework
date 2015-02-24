@@ -19,8 +19,8 @@ void main(void)
 	PhysicsEngine physicsEngine = PhysicsEngine();
 
 	Cube cube = Cube(r, physicsEngine, 3);
-	Sphere sphere1 = Sphere(r, physicsEngine, 0.3f, PhysVector3(-1, 0, 0), PhysVector3::zero(), PhysVector3(0, -1, 0), 1);
-	//Sphere sphere2 = Sphere(r, physicsEngine, 0.3f, PhysVector3(1, 0, 0), PhysVector3::zero(), PhysVector3(0, 0, 0), 1);
+	Sphere sphere1 = Sphere(r, physicsEngine, 0.3f, PhysVector3(-1, 0, 0), PhysVector3::zero(), PhysVector3(1, 0, 0), 1);
+	Sphere sphere2 = Sphere(r, physicsEngine, 0.3f, PhysVector3(1, 0, 0), PhysVector3::zero(), PhysVector3(0, 0, 0), 1);
 
 	while(w.UpdateWindow())
 	{
@@ -29,7 +29,7 @@ void main(void)
 
 		cube.Update(sec);
 		sphere1.Update(sec);
-		//sphere2.Update(sec);
+		sphere2.Update(sec);
 
 		r.UpdateScene(sec);
 		r.ClearBuffers();

@@ -2,7 +2,7 @@
 #include "Renderer.h"
 #include "RigidBody.h"
 #include "PhysicsEngine.h"
-
+#include "SphereCollider.h"
 
 class Sphere : RigidBody
 {

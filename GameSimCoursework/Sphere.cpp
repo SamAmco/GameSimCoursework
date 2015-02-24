@@ -1,5 +1,4 @@
 #include "Sphere.h"
-#include "Collider.h"
 
 Sphere::Sphere(Renderer& renderer, 
 	PhysicsEngine& physicsEngine, 

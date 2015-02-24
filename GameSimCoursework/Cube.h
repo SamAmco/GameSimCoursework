@@ -1,10 +1,12 @@
 #pragma once
 #include "Renderer.h"
+#include "RigidBody.h"
+#include "PhysicsEngine.h"
 
 class Cube
 {
 public:
-	Cube(Renderer& renderer, float size);
+	Cube(Renderer& renderer, PhysicsEngine& physicsEngine, float size);
 
 	void Update(float sec);
 
@@ -15,5 +17,6 @@ private:
 	Mesh*	mesh;
 	Shader* shader;
 	RenderObject renderObject;
+	RigidBody* rigidBodys;
 };
 

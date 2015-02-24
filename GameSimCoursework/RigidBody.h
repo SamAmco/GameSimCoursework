@@ -1,6 +1,8 @@
 #pragma once
 #include "PhysVector3.h"
-#include "SphereCollider.h"
+//#include "Collider.h"
+
+class Collider;
 
 class RigidBody
 {

@@ -3,6 +3,7 @@
 #include "../nclgl/Matrix4.h"
 
 class SphereCollider;
+class PlaneCollider;
 
 class Collider
 {
@@ -11,6 +12,7 @@ public:
 
 	virtual bool Collides(PhysVector3& collisionPoint, const Collider& other) const = 0;
 	virtual bool Collides(PhysVector3& collisionPoint, const SphereCollider& other) const = 0;
+	virtual bool Collides(PhysVector3& collisionPoint, const PlaneCollider& other) const = 0;
 
 	Matrix4 transform;
 

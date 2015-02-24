@@ -1,7 +1,7 @@
 #include "Cube.h"
 
 
-Cube::Cube(Renderer& renderer, float size) :
+Cube::Cube(Renderer& renderer, PhysicsEngine& physicsEngine, float size) :
 renderer(renderer), size(size)
 {
 	mesh = Mesh::LoadMeshFile("cube.obj");

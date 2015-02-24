@@ -18,9 +18,9 @@ void main(void)
 	r.SetViewMatrix(Matrix4::BuildViewMatrix(Vector3(0, 0, 0), Vector3(0, 0, -10)));
 	PhysicsEngine physicsEngine = PhysicsEngine();
 
-	Cube cube = Cube(r, 2);
-	Sphere sphere1 = Sphere(r, physicsEngine, 0.3, PhysVector3(-1, 0, -10), PhysVector3::zero(), PhysVector3(0.1, 0, 0), 1);
-	Sphere sphere2 = Sphere(r, physicsEngine, 0.3, PhysVector3(1, 0, -10), PhysVector3::zero(), PhysVector3(-0.1, 0, 0), 1);
+	Cube cube = Cube(r, physicsEngine, 2);
+	Sphere sphere1 = Sphere(r, physicsEngine, 0.3f, PhysVector3(-1, 0, -10), PhysVector3::zero(), PhysVector3(0.1f, 0, 0), 1);
+	Sphere sphere2 = Sphere(r, physicsEngine, 0.3f, PhysVector3(1, 0, -10), PhysVector3::zero(), PhysVector3(0, 0, 0), 1);
 
 	while(w.UpdateWindow())
 	{

@@ -39,7 +39,7 @@ void PhysicsEngine::collisionDetection(float sec)
 
 			if (r1->collider->Collides(collisionPoint, *(r2->collider)))
 			{
-				cout << "Sphere sphere collision: " << collisionPoint << endl;
+				cout << "collision: " << collisionPoint << endl;
 			}
 		}
 	}

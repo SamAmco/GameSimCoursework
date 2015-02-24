@@ -13,7 +13,8 @@ public:
 			: acceleration(acceleration),
 			velocity(velocity),
 			mass(mass),
-			collider(NULL) {}
+			collider(NULL),
+			isKinematic(false) {}
 
 	virtual ~RigidBody();
 
@@ -21,5 +22,6 @@ public:
 	PhysVector3 velocity;
 	Collider* collider;
 	float mass;
+	bool isKinematic;
 };
 

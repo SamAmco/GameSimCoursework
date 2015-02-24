@@ -3,4 +3,5 @@
 
 RigidBody::~RigidBody()
 {
+	delete collider;
 }

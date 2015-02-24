@@ -1,4 +1,4 @@
-﻿Build started 24/02/2015 14:05:25.
+﻿Build started 24/02/2015 18:45:35.
      1>Project "C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\GameSimCoursework.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -16,24 +16,9 @@
          Debug\Shader.obj
          Debug\Sphere.obj
          Debug\SphereCollider.obj
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewAttachShader imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewBindAttribLocation imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewCompileShader imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewCreateProgram imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewCreateShader imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewDeleteProgram imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewDeleteShader imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewDetachShader imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewGetProgramInfoLog imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewGetProgramiv imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewGetShaderiv imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewLinkProgram imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewShaderSource imported
-     1>Shader.obj : warning LNK4049: locally defined symbol ___glewGetInfoLogARB imported
-     1>glew32sd.lib(glew.obj) : warning LNK4204: 'C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
          GameSimCoursework.vcxproj -> C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\Debug\GameSimCoursework.exe
      1>Done Building Project "C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\GameSimCoursework.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.20
+Time Elapsed 00:00:01.69

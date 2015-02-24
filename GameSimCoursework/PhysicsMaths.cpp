@@ -9,7 +9,8 @@ void PhysicsMaths::semiImplicitEuler(RigidBody& r, float time)
 	r.collider->transform.SetPositionVector(Vector3(disp.getX(), disp.getY(), disp.getZ()));
 }
 
-bool PhysicsMaths::CollidesSphereSphere(const SphereCollider& a, const SphereCollider& b, PhysVector3& collisionPoint)
+bool PhysicsMaths::CollidesSphereSphere(const SphereCollider& a,
+	const SphereCollider& b, PhysVector3& collisionPoint)
 {
 	//squaring d is more efficient than finding the square root of the sqrMagnitude
 	float d = a.radius + b.radius;
@@ -25,7 +26,15 @@ bool PhysicsMaths::CollidesSphereSphere(const SphereCollider& a, const SphereCol
 	return false;
 }
 
-bool PhysicsMaths::CollidesPlaneSphere(const SphereCollider& sphere, const PlaneCollider& plane, PhysVector3& collisionPoint)
+//N.S + d < r
+bool PhysicsMaths::CollidesPlaneSphere(const SphereCollider& sphere,
+	const PlaneCollider& plane, PhysVector3& collisionPoint)
 {
+	float dotProd = PhysVector3::dot(plane.normal, sphere.transform.GetPositionVector());
+
+	if (dotProd + plane.transform.GetPositionVector().Length() < sphere.radius)
+	{
+		return true;
+	}
 	return false;
 }

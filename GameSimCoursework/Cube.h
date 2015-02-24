@@ -2,6 +2,7 @@
 #include "Renderer.h"
 #include "RigidBody.h"
 #include "PhysicsEngine.h"
+#include "PlaneCollider.h"
 
 class Cube
 {
@@ -17,6 +18,7 @@ private:
 	Mesh*	mesh;
 	Shader* shader;
 	RenderObject renderObject;
-	RigidBody* rigidBodys;
+	vector<RigidBody*> rigidBodys;
+	Matrix4 transform;
 };
 

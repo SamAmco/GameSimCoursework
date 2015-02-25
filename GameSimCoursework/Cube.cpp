@@ -32,18 +32,24 @@ renderer(renderer), size(size)
 	rigidBodys[3]->collider = new PlaneCollider(PhysVector3(0, 0, -1));
 	rigidBodys[4]->collider = new PlaneCollider(PhysVector3(0, -1, 0));
 	rigidBodys[5]->collider = new PlaneCollider(PhysVector3(0, 1, 0));
-
-	Update(0);
-}
-
-void Cube::Update(float sec)
-{
 	rigidBodys[0]->collider->transform = Matrix4::Translation(Vector3(-size, 0, 0));
 	rigidBodys[1]->collider->transform = Matrix4::Translation(Vector3(0, 0, -size));
 	rigidBodys[2]->collider->transform = Matrix4::Translation(Vector3(size, 0, 0));
 	rigidBodys[3]->collider->transform = Matrix4::Translation(Vector3(0, 0, size));
 	rigidBodys[4]->collider->transform = Matrix4::Translation(Vector3(0, size, 0));
 	rigidBodys[5]->collider->transform = Matrix4::Translation(Vector3(0, -size, 0));
+
+	Update(0);
+}
+
+void Cube::Update(float sec)
+{
+	//rigidBodys[0]->collider->transform = Matrix4::Translation(Vector3(-size, 0, 0));
+	//rigidBodys[1]->collider->transform = Matrix4::Translation(Vector3(0, 0, -size));
+	//rigidBodys[2]->collider->transform = Matrix4::Translation(Vector3(size, 0, 0));
+	//rigidBodys[3]->collider->transform = Matrix4::Translation(Vector3(0, 0, size));
+	//rigidBodys[4]->collider->transform = Matrix4::Translation(Vector3(0, size, 0));
+	//rigidBodys[5]->collider->transform = Matrix4::Translation(Vector3(0, -size, 0));
 
 	//renderObject.SetModelMatrix(renderObject.GetModelMatrix() * Matrix4::Rotation(0.1f * msec, Vector3(1, 1, 1)));
 }

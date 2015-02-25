@@ -23,7 +23,7 @@ void PhysicsEngine::updatePositions(float sec)
 	for each (RigidBody* r in rigidBodys)
 	{
 		if (!r->isKinematic)
-			PhysicsMaths::semiImplicitEuler(*r, sec);
+			PhysicsMaths::semiImplicitEuler(*r, gravity, sec);
 	}
 }
 

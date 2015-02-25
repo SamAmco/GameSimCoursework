@@ -14,13 +14,15 @@ public:
 			velocity(velocity),
 			inverseMass(1.0f / mass),
 			collider(NULL),
-			isKinematic(false) {}
+			isKinematic(false),
+			drag(0.99f){}
 
 	virtual ~RigidBody();
 
 	PhysVector3 acceleration;
 	PhysVector3 velocity;
 	Collider* collider;
+	float drag;
 	float inverseMass;
 	bool isKinematic;
 };

@@ -2,15 +2,15 @@
 
 Sphere::Sphere(Renderer& renderer, 
 	PhysicsEngine& physicsEngine, 
+	Mesh* mesh,
+	Shader* shader,
 	float size,
 	PhysVector3 position,
 	PhysVector3 velocity,
 	PhysVector3 acceleration,
 	float mass) 
-	: RigidBody(acceleration, velocity, mass), size(size), sphereCollider(SphereCollider(size))
+	: RigidBody(acceleration, velocity, mass), mesh(mesh), shader(shader), size(size), sphereCollider(SphereCollider(size))
 {
-	mesh = Mesh::LoadMeshFile("sphere.obj", Vector4(0.75, 0.75, 0.75, 1));
-	shader = new Shader("Shaders/PhongColVert.glsl", "Shaders/PhongColFrag.glsl");
 	if (shader->UsingDefaultShader())
 	{
 		cout << "Warning: Using default shader! Your shader probably hasn't worked..." << endl;

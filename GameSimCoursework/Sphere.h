@@ -7,7 +7,7 @@
 class Sphere : RigidBody
 {
 public:
-	Sphere(Renderer& renderer, PhysicsEngine& physicsEngine, float size,
+	Sphere(Renderer& renderer, PhysicsEngine& physicsEngine, Mesh* mesh, Shader* shader, float size,
 		PhysVector3 position = PhysVector3::zero(),
 		PhysVector3 velocity = PhysVector3::zero(),
 		PhysVector3 acceleration = PhysVector3::zero(),

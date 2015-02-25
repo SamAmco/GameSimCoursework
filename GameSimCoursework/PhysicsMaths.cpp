@@ -3,7 +3,7 @@
 
 void PhysicsMaths::semiImplicitEuler(RigidBody& r, PhysVector3 gravity, float time)
 {
-	r.velocity = r.velocity + ((r.acceleration + gravity) * time);
+	r.velocity = (r.velocity + ((r.acceleration + gravity) * time)) * r.drag;
 	PhysVector3 disp = r.collider->transform.GetPositionVector();
 	disp = disp + (r.velocity * time);
 	r.collider->transform.SetPositionVector(Vector3(disp.getX(), disp.getY(), disp.getZ()));

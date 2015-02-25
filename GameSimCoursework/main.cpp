@@ -3,37 +3,74 @@
 #include "Cube.h"
 #include "Sphere.h"
 #include "PhysicsEngine.h"
+#include <stdlib.h>
+#include <time.h>
+#include <algorithm>
 
 #pragma comment(lib, "nclgl.lib")
+
+static Sphere* generateRandomSphere(Renderer& renderer, PhysicsEngine& physicsEngine, Mesh* mesh, Shader* shader)
+{
+
+	return new Sphere(renderer, physicsEngine, mesh, shader, max((float)(rand() % 100) / 150.0f, 0.5f),
+		PhysVector3::zero(),
+		PhysVector3((float)(rand() % 100) / 25.0f, (float)(rand() % 100) / 25.0f, (float)(rand() % 100) / 25.0f),
+		PhysVector3::zero(),
+		max((float)(rand() % 100) / 25.0f, 0.5f));
+}
 
 void main(void) 
 {
 	Window w = Window(900, 700);
-	Renderer r(w);
+	Renderer renderer(w);
 	Vector3 lightCol = Vector3(1, 1, 1);
 	Vector3 lightPos = Vector3(20.0f, 20.0f, -10);
 	float lightRad = 3000.0f;
-	r.SetProjectionMatrix(Matrix4::Perspective(1, 100, 1.33f, 45.0f));
-	r.SetMainLight(lightCol, lightPos, lightRad);
-	r.SetViewMatrix(Matrix4::BuildViewMatrix(Vector3(0, 0, 10), Vector3(0, 0, 0)));
+	renderer.SetProjectionMatrix(Matrix4::Perspective(1, 100, 1.33f, 45.0f));
+	renderer.SetMainLight(lightCol, lightPos, lightRad);
+	renderer.SetViewMatrix(Matrix4::BuildViewMatrix(Vector3(0, 0, 10), Vector3(0, 0, 0)));
 	PhysicsEngine physicsEngine = PhysicsEngine();
 
-	Cube cube = Cube(r, physicsEngine, 3);
-	Sphere sphere1 = Sphere(r, physicsEngine, 0.3f, PhysVector3(-1, 0, 0), PhysVector3(2, 1, 1), PhysVector3(0, 0, 0), 1);
-	Sphere sphere2 = Sphere(r, physicsEngine, 0.3f, PhysVector3(1, 0, 0), PhysVector3(3, 1, -1), PhysVector3(0, 0, 0), 1);
+	Cube cube = Cube(renderer, physicsEngine, 3);
+	Mesh* mesh = Mesh::LoadMeshFile("sphere.obj", Vector4(0.75, 0.75, 0.75, 1));
+	Shader* shader = new Shader("Shaders/PhongColVert.glsl", "Shaders/PhongColFrag.glsl");
+	//Sphere sphere1 = Sphere(r, physicsEngine, 0.3f, PhysVector3(-1, 0, 0), PhysVector3(2, 1, 1), PhysVector3(0, 0, 0), 1);
+	//Sphere sphere2 = Sphere(r, physicsEngine, 0.3f, PhysVector3(1, 0, 0), PhysVector3(3, 1, -1), PhysVector3(0, 0, 0), 1);
 
+	srand(time(NULL));
+	rand();
+
+
+	vector<Sphere*> spheres = vector<Sphere*>();
+
+	float timeCount = 0;
+	int numSpheresToGen = 15;
+	float timeBetweenSpheres = 0.1f;
 	while(w.UpdateWindow())
 	{
 		float sec = w.GetTimer()->GetTimedMS() / 1000.0f;
 		physicsEngine.Update(sec);
 
-		cube.Update(sec);
-		sphere1.Update(sec);
-		sphere2.Update(sec);
+		timeCount += sec;
+		if (timeCount >= timeBetweenSpheres && spheres.size() < numSpheresToGen)
+		{
+			spheres.push_back(generateRandomSphere(renderer, physicsEngine, mesh, shader));
+			timeCount = 0;
+		}
 
-		r.UpdateScene(sec);
-		r.ClearBuffers();
-		r.RenderScene();
-		r.SwapBuffers();
+		for each (Sphere* s in spheres)
+		{
+			s->Update(sec);
+		}
+
+		cube.Update(sec);
+
+		renderer.UpdateScene(sec);
+		renderer.ClearBuffers();
+		renderer.RenderScene();
+		renderer.SwapBuffers();
 	}
+
+	for each (Sphere* s in spheres)
+		delete s;
 }

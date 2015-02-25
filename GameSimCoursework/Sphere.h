@@ -4,7 +4,7 @@
 #include "PhysicsEngine.h"
 #include "SphereCollider.h"
 
-class Sphere : RigidBody
+class Sphere : public RigidBody
 {
 public:
 	Sphere(Renderer& renderer, PhysicsEngine& physicsEngine, Mesh* mesh, Shader* shader, float size,

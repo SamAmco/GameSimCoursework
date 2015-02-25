@@ -16,7 +16,7 @@ static Sphere* generateRandomSphere(Renderer& renderer, PhysicsEngine& physicsEn
 		PhysVector3::zero(),
 		PhysVector3((float)(rand() % 100) / 25.0f, (float)(rand() % 100) / 25.0f, (float)(rand() % 100) / 25.0f),
 		PhysVector3::zero(),
-		max((float)(rand() % 100) / 25.0f, 0.5f));
+		max((float)(rand() % 100) / 25.0f, 1));
 }
 
 void main(void) 
@@ -34,12 +34,9 @@ void main(void)
 	Cube cube = Cube(renderer, physicsEngine, 3);
 	Mesh* mesh = Mesh::LoadMeshFile("sphere.obj", Vector4(0.75, 0.75, 0.75, 1));
 	Shader* shader = new Shader("Shaders/PhongColVert.glsl", "Shaders/PhongColFrag.glsl");
-	//Sphere sphere1 = Sphere(r, physicsEngine, 0.3f, PhysVector3(-1, 0, 0), PhysVector3(2, 1, 1), PhysVector3(0, 0, 0), 1);
-	//Sphere sphere2 = Sphere(r, physicsEngine, 0.3f, PhysVector3(1, 0, 0), PhysVector3(3, 1, -1), PhysVector3(0, 0, 0), 1);
 
 	srand(time(NULL));
 	rand();
-
 
 	vector<Sphere*> spheres = vector<Sphere*>();
 
@@ -58,8 +55,15 @@ void main(void)
 			timeCount = 0;
 		}
 
+		bool applyUpwardForce = false;
+		if (Keyboard::KeyTriggered(KeyboardKeys::KEY_F))
+			applyUpwardForce = true;
+
 		for each (Sphere* s in spheres)
 		{
+			if (applyUpwardForce)
+				s->ApplyMomentum(PhysVector3(0, 10, 0));
+
 			s->Update(sec);
 		}
 

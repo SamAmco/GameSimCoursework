@@ -19,6 +19,8 @@ public:
 
 	virtual ~RigidBody();
 
+	void ApplyMomentum(PhysVector3 momentum);
+
 	PhysVector3 acceleration;
 	PhysVector3 velocity;
 	Collider* collider;

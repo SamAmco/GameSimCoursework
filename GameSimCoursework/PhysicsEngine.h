@@ -15,7 +15,7 @@ public:
 
 private:
 	vector<RigidBody*> rigidBodys;
-	const float elasticity = 1;
+	const float elasticity = 1.0f;
 	
 	void updatePositions(float sec);
 	void collisionDetection(float sec);

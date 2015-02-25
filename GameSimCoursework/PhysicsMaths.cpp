@@ -10,15 +10,15 @@ void PhysicsMaths::semiImplicitEuler(RigidBody& r, float time)
 }
 
 bool PhysicsMaths::CollidesSphereSphere(const SphereCollider& a,
-	const SphereCollider& b, PhysVector3& contactNormal)
+	const SphereCollider& b, PhysVector3& contactNormal, float& penetrationDepth)
 {
 	//squaring d is more efficient than finding the square root of the sqrMagnitude
 	float d = a.radius + b.radius;
-	PhysVector3 pos = a.transform.GetPositionVector();
-	PhysVector3 norm = pos - PhysVector3(b.transform.GetPositionVector());
-	if (norm.sqrMagnitude() < d * d)
+	PhysVector3 norm = a.transform.GetPositionVector() - b.transform.GetPositionVector();
+	float dist = (norm).getMagnitude();
+	if (dist < d)
 	{
-		//float p = (a.radius + b.radius) - d;
+		penetrationDepth = (a.radius + b.radius) - dist;
 		contactNormal = norm.normalise();
 		//PhysVector3 P = pos - (norm * (b.radius - p));
 		return true;
@@ -27,14 +27,16 @@ bool PhysicsMaths::CollidesSphereSphere(const SphereCollider& a,
 }
 
 bool PhysicsMaths::CollidesPlaneSphere(const SphereCollider& sphere,
-	const PlaneCollider& plane, PhysVector3& contactNormal)
+	const PlaneCollider& plane, PhysVector3& contactNormal, float& penetrationDepth)
 {
 	float dotProd = PhysVector3::dot(plane.normal, sphere.transform.GetPositionVector());
 
 	if (dotProd + plane.transform.GetPositionVector().Length() < sphere.radius)
 	{
 		PhysVector3 norm = plane.normal;
-		contactNormal = norm.normalise();
+		//p = r - (N.S + d)
+		penetrationDepth = (sphere.radius - (dotProd + plane.transform.GetPositionVector().Length()));
+		contactNormal = norm;
 		return true;
 	}
 	return false;

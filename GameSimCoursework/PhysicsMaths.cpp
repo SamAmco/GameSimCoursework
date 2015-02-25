@@ -29,14 +29,19 @@ bool PhysicsMaths::CollidesSphereSphere(const SphereCollider& a,
 bool PhysicsMaths::CollidesPlaneSphere(const SphereCollider& sphere,
 	const PlaneCollider& plane, PhysVector3& contactNormal, float& penetrationDepth)
 {
-	float dotProd = PhysVector3::dot(plane.normal, sphere.transform.GetPositionVector());
+	Matrix4 m1 = Matrix4::Translation(Vector3(plane.normal.getX(), plane.normal.getY(), plane.normal.getZ()));
+	Matrix4 m2 = plane.transform;
+	m2.SetPositionVector(Vector3(0,0,0));
+	PhysVector3 normal = (m2 * m1).GetPositionVector();
+	//std::cout << normal << std::endl;
+
+	float dotProd = PhysVector3::dot(normal, sphere.transform.GetPositionVector());
 
 	if (dotProd + plane.transform.GetPositionVector().Length() < sphere.radius)
 	{
-		PhysVector3 norm = plane.normal;
 		//p = r - (N.S + d)
 		penetrationDepth = (sphere.radius - (dotProd + plane.transform.GetPositionVector().Length()));
-		contactNormal = norm;
+		contactNormal = normal.normalise();
 		return true;
 	}
 	return false;

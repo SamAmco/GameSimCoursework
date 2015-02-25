@@ -41,7 +41,7 @@ void main(void)
 	vector<Sphere*> spheres = vector<Sphere*>();
 
 	float timeCount = 0;
-	int numSpheresToGen = 15;
+	int numSpheresToGen = 1;
 	float timeBetweenSpheres = 0.1f;
 	while(w.UpdateWindow())
 	{

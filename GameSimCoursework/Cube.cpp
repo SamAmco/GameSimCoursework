@@ -44,14 +44,30 @@ renderer(renderer), size(size)
 
 void Cube::Update(float sec)
 {
-	//rigidBodys[0]->collider->transform = Matrix4::Translation(Vector3(-size, 0, 0));
-	//rigidBodys[1]->collider->transform = Matrix4::Translation(Vector3(0, 0, -size));
-	//rigidBodys[2]->collider->transform = Matrix4::Translation(Vector3(size, 0, 0));
-	//rigidBodys[3]->collider->transform = Matrix4::Translation(Vector3(0, 0, size));
-	//rigidBodys[4]->collider->transform = Matrix4::Translation(Vector3(0, size, 0));
-	//rigidBodys[5]->collider->transform = Matrix4::Translation(Vector3(0, -size, 0));
+	bool update = false;
+	Matrix4 t = renderObject.GetModelMatrix();
 
-	//renderObject.SetModelMatrix(renderObject.GetModelMatrix() * Matrix4::Rotation(0.1f * msec, Vector3(1, 1, 1)));
+	if (Keyboard::KeyDown(KeyboardKeys::KEY_L))
+	{
+		update = true;
+		t = Matrix4::Rotation(80 * sec, Vector3(0, 0, 1)) * t;
+	}
+	if (Keyboard::KeyDown(KeyboardKeys::KEY_K))
+	{
+		update = true;
+		t = Matrix4::Rotation(80 * sec, Vector3(1, 0, 0)) * t;
+	}
+
+	if (update)
+	{
+		rigidBodys[0]->collider->transform = t * Matrix4::Translation(Vector3(-size, 0, 0));
+		rigidBodys[1]->collider->transform = t * Matrix4::Translation(Vector3(0, 0, -size));
+		rigidBodys[2]->collider->transform = t * Matrix4::Translation(Vector3(size, 0, 0)) ;
+		rigidBodys[3]->collider->transform = t * Matrix4::Translation(Vector3(0, 0, size)) ;
+		rigidBodys[4]->collider->transform = t * Matrix4::Translation(Vector3(0, size, 0)) ;
+		rigidBodys[5]->collider->transform = t * Matrix4::Translation(Vector3(0, -size, 0)); 
+		renderObject.SetModelMatrix(t);
+	}
 }
 
 

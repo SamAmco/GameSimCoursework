@@ -4,9 +4,24 @@
 void PhysicsMaths::semiImplicitEuler(RigidBody& r, Vector3 gravity, float time)
 {
 	r.velocity = (r.velocity + ((r.acceleration + gravity) * time)) * r.drag;
-	Vector3 disp = r.collider->translation;
-	disp = disp + (r.velocity * time);
+
+	Vector3 disp = r.collider->translation + (r.velocity * time);
+
+	//If the object has barely moved for 10 frames then set it to rest
+	if (((disp - r.lastDisp) / time).sqrLength() < REST_THRESHOLD)
+	{
+		++r.restFrames;
+		if (r.restFrames > 10)
+		{
+			r.isAtRest = true;
+			return;
+		}
+	}
+	else
+		r.restFrames = 0;
+
 	r.collider->translation = disp;
+	r.lastDisp = r.collider->translation;
 }
 
 bool PhysicsMaths::CollidesSphereSphere(const SphereCollider& a,

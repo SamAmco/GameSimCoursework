@@ -4,6 +4,8 @@
 #include "SphereCollider.h"
 #include "PlaneCollider.h"
 
+const float REST_THRESHOLD = 0.001f;
+
 class PhysicsMaths
 {
 public:

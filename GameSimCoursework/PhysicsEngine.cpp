@@ -53,14 +53,13 @@ void PhysicsEngine::updatePositions(float sec)
 {
 	for each (RigidBody* r in rigidBodys)
 	{
-		if (!r->isKinematic)
+		if (!(r->isKinematic || r->isAtRest))
 			PhysicsMaths::semiImplicitEuler(*r, gravity, sec);
 	}
 }
 
 void PhysicsEngine::collisionDetection(vector<CollisionPair> pairs)
 {
-	//cout << pairs.size() << endl;
 	for each (CollisionPair collisionPair in pairs)
 	{
 		Vector3 contactNormal;
@@ -87,10 +86,15 @@ void PhysicsEngine::collisionDetection(vector<CollisionPair> pairs)
 			collisionPair.b->collider->translation = yOff;
 
 			//Impulse
-			collisionPair.a->velocity = collisionPair.a->velocity
-				+ (contactNormal * (J * xInvMass));
-			collisionPair.b->velocity = collisionPair.b->velocity
-				- (contactNormal * (J * yInvMass));
+			Vector3 aVel = (contactNormal * (J * xInvMass));
+			Vector3 bVel = (contactNormal * (J * yInvMass));
+			collisionPair.a->velocity += aVel;
+			collisionPair.b->velocity -= bVel;
+
+			if (aVel.sqrLength() > REST_THRESHOLD)
+				collisionPair.a->isAtRest = false;
+			if (bVel.sqrLength() > REST_THRESHOLD)
+				collisionPair.b->isAtRest = false;
 		}
 	}
 }

@@ -54,6 +54,11 @@ public:
 		x = y = z = 0.0f;
 	}
 
+	float sqrLength() const
+	{
+		return (x*x) + (y*y) + (z*z);
+	}
+
 	float			Length() const {
 		return sqrt((x*x)+(y*y)+(z*z));	
 	}

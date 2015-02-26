@@ -15,7 +15,10 @@ public:
 			inverseMass(1.0f / mass),
 			collider(NULL),
 			isKinematic(false),
-			drag(0.99f){}
+			isAtRest(false),
+			drag(0.99f),
+			restFrames(0),
+			lastDisp(Vector3()){}
 
 	virtual ~RigidBody();
 
@@ -27,5 +30,8 @@ public:
 	float drag;
 	float inverseMass;
 	bool isKinematic;
+	bool isAtRest;
+	int restFrames = 0;
+	Vector3 lastDisp;
 };
 

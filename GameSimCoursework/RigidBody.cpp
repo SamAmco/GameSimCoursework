@@ -1,7 +1,7 @@
 #include "RigidBody.h"
 
 
-void RigidBody::ApplyMomentum(PhysVector3 momentum)
+void RigidBody::ApplyMomentum(Vector3 momentum)
 {
 	velocity += (momentum * inverseMass);
 }

@@ -5,9 +5,9 @@ Sphere::Sphere(Renderer& renderer,
 	Mesh* mesh,
 	Shader* shader,
 	float size,
-	PhysVector3 position,
-	PhysVector3 velocity,
-	PhysVector3 acceleration,
+	Vector3 position,
+	Vector3 velocity,
+	Vector3 acceleration,
 	float mass) 
 	: RigidBody(acceleration, velocity, mass), mesh(mesh), shader(shader), size(size), sphereCollider(SphereCollider(size))
 {
@@ -20,9 +20,9 @@ Sphere::Sphere(Renderer& renderer,
 	renderObject = RenderObject(mesh, shader);
 
 	Matrix4 transform = Matrix4();
-	transform.SetPositionVector(Vector3(position.getX(), position.getY(), position.getZ()));
+	transform.SetPositionVector(position);
 	transform.SetScalingVector(Vector3(size, size, size));
-	sphereCollider.transform = transform;
+	sphereCollider.translation = position;
 	collider = &sphereCollider;
 
 	renderer.AddRenderObject(renderObject);
@@ -32,7 +32,7 @@ Sphere::Sphere(Renderer& renderer,
 
 void Sphere::Update(float sec)
 {
-	renderObject.SetModelMatrix(collider->transform);
+	renderObject.SetModelMatrix(Matrix4::Translation(collider->translation) * Matrix4::Scale(Vector3(size, size, size)));
 }
 
 

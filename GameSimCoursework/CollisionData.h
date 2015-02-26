@@ -1,5 +1,5 @@
 #pragma once
-#include "PhysVector3.h"
+#include "../nclgl/Vector3.h"
 
 class CollisionData
 {
@@ -8,6 +8,6 @@ public:
 	CollisionData(){}
 	~CollisionData(){}
 
-	PhysVector3 N;
+	Vector3 N;
 };
 

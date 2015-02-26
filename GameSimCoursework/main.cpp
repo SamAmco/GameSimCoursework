@@ -11,16 +11,13 @@
 
 static Sphere* generateRandomSphere(Renderer& renderer, PhysicsEngine& physicsEngine, Mesh* mesh, Shader* shader)
 {
-	//return new Sphere(renderer, physicsEngine, mesh, shader, 1,//max((float)(rand() % 100) / 150.0f, 0.5f),
-	//	PhysVector3::zero(),
-	//	PhysVector3::zero(),
-	//	PhysVector3::zero(),
-	//	1);// max((float)(rand() % 100) / 25.0f, 1));
-	return new Sphere(renderer, physicsEngine, mesh, shader, max((float)(rand() % 100) / 150.0f, 0.5f),
-		PhysVector3::zero(),
-		PhysVector3((float)(rand() % 100) / 25.0f, (float)(rand() % 100) / 25.0f, (float)(rand() % 100) / 25.0f),
-		PhysVector3::zero(),
-		max((float)(rand() % 100) / 25.0f, 1));
+	float size = fmax((float)(rand() % 100) / 150.0f, 0.4f);
+	float mass = fmax((float)(rand() % 100) / 25.0f, 1);
+	return new Sphere(renderer, physicsEngine, mesh, shader, size,
+		Vector3(),
+		Vector3((float)(rand() % 100) / 25.0f, (float)(rand() % 100) / 25.0f, (float)(rand() % 100) / 25.0f),
+		Vector3(),
+		mass);
 }
 
 void main(void) 
@@ -66,7 +63,7 @@ void main(void)
 		for each (Sphere* s in spheres)
 		{
 			if (applyUpwardForce)
-				s->ApplyMomentum(PhysVector3(0, 10, 0));
+				s->ApplyMomentum(Vector3(0, 10, 0));
 
 			s->Update(sec);
 		}

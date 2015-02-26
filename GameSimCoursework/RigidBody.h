@@ -1,5 +1,5 @@
 #pragma once
-#include "PhysVector3.h"
+#include "../nclgl/Vector3.h"
 //#include "Collider.h"
 
 class Collider;
@@ -7,8 +7,8 @@ class Collider;
 class RigidBody
 {
 public:
-	RigidBody(PhysVector3 acceleration = PhysVector3::zero(),
-		PhysVector3 velocity = PhysVector3::zero(),
+	RigidBody(Vector3 acceleration = Vector3(),
+		Vector3 velocity = Vector3(),
 		float mass = 1)
 			: acceleration(acceleration),
 			velocity(velocity),
@@ -19,10 +19,10 @@ public:
 
 	virtual ~RigidBody();
 
-	void ApplyMomentum(PhysVector3 momentum);
+	void ApplyMomentum(Vector3 momentum);
 
-	PhysVector3 acceleration;
-	PhysVector3 velocity;
+	Vector3 acceleration;
+	Vector3 velocity;
 	Collider* collider;
 	float drag;
 	float inverseMass;

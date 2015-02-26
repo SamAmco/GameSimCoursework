@@ -1,31 +1,25 @@
 #include "SphereCollider.h"
-#include "PhysVector3.h"
+#include "../nclgl/Vector3.h"
 #include "PhysicsMaths.h"
 
-bool SphereCollider::Collides(PhysVector3& contactNormal, const Collider& other, float& penetrationDepth) const
+bool SphereCollider::Collides(Vector3& contactNormal, const Collider& other, float& penetrationDepth) const
 {
 	return other.Collides(contactNormal, *this, penetrationDepth);
 }
 
-bool SphereCollider::Collides(PhysVector3& contactNormal, const SphereCollider& other, float& penetrationDepth) const
+bool SphereCollider::Collides(Vector3& contactNormal, const SphereCollider& other, float& penetrationDepth) const
 {
 	return PhysicsMaths::CollidesSphereSphere(*this, other, contactNormal, penetrationDepth);
 }
 
-bool SphereCollider::Collides(PhysVector3& contactNormal, const PlaneCollider& other, float& penetrationDepth) const
+bool SphereCollider::Collides(Vector3& contactNormal, const PlaneCollider& other, float& penetrationDepth) const
 {
-	//bool b = PhysicsMaths::CollidesPlaneSphere(*this, other, contactNormal, penetrationDepth);
-	//if (b)
-	//{
-	//	Projection p = other.Project(PhysVector3(0, 1, 0));
-	//	std::cout << p.min << " : " << p.max << std::endl;
-	//}
 	return PhysicsMaths::CollidesPlaneSphere(*this, other, contactNormal, penetrationDepth);
 }
 
-Projection SphereCollider::Project(const PhysVector3& axis)
+Projection SphereCollider::Project(const Vector3& axis)
 {
-	float dotProd = PhysVector3::dot(axis, transform.GetPositionVector());
+	float dotProd = Vector3::Dot(axis, translation);
 	Projection p;
 	p.max = dotProd + radius;
 	p.min = dotProd - radius;

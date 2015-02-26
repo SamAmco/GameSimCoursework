@@ -71,9 +71,6 @@
     <ClInclude Include="Sphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PhysVector3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PhysicsMaths.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -43,6 +43,13 @@ public:
 		}
 	}
 
+	Vector3 Normalised()
+	{
+		Vector3 v = Vector3(*this);
+		v.Normalise();
+		return v;
+	}
+
 	void		ToZero() {
 		x = y = z = 0.0f;
 	}

@@ -8,9 +8,9 @@ class Sphere : public RigidBody
 {
 public:
 	Sphere(Renderer& renderer, PhysicsEngine& physicsEngine, Mesh* mesh, Shader* shader, float size,
-		PhysVector3 position = PhysVector3::zero(),
-		PhysVector3 velocity = PhysVector3::zero(),
-		PhysVector3 acceleration = PhysVector3::zero(),
+		Vector3 position = Vector3(),
+		Vector3 velocity = Vector3(),
+		Vector3 acceleration = Vector3(),
 		float mass = 1);
 
 	void Update(float sec);

@@ -24,7 +24,7 @@ public:
 private:
 	vector<RigidBody*> rigidBodys;
 	const float elasticity = 0.7f;
-	const PhysVector3 gravity = PhysVector3(0, -9.81, 0);
+	const Vector3 gravity = Vector3(0, 0, 0);// -9.81, 0);
 	
 	void updatePositions(float sec);
 	vector<CollisionPair> sortAndSweep();

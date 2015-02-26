@@ -1,42 +1,41 @@
 #include "PhysicsMaths.h"
 #include "../nclgl/Vector3.h"
 
-void PhysicsMaths::semiImplicitEuler(RigidBody& r, PhysVector3 gravity, float time)
+void PhysicsMaths::semiImplicitEuler(RigidBody& r, Vector3 gravity, float time)
 {
 	r.velocity = (r.velocity + ((r.acceleration + gravity) * time)) * r.drag;
-	PhysVector3 disp = r.collider->transform.GetPositionVector();
+	Vector3 disp = r.collider->translation;
 	disp = disp + (r.velocity * time);
-	r.collider->transform.SetPositionVector(Vector3(disp.getX(), disp.getY(), disp.getZ()));
+	r.collider->translation = disp;
 }
 
 bool PhysicsMaths::CollidesSphereSphere(const SphereCollider& a,
-	const SphereCollider& b, PhysVector3& contactNormal, float& penetrationDepth)
+	const SphereCollider& b, Vector3& contactNormal, float& penetrationDepth)
 {
-	//squaring d is more efficient than finding the square root of the sqrMagnitude
 	float d = a.radius + b.radius;
-	PhysVector3 norm = a.transform.GetPositionVector() - b.transform.GetPositionVector();
-	float dist = (norm).getMagnitude();
+	Vector3 norm = a.translation - b.translation;
+	float dist = (norm).Length();
 	if (dist < d)
 	{
 		penetrationDepth = (a.radius + b.radius) - dist;
-		contactNormal = norm.normalise();
-		//PhysVector3 P = pos - (norm * (b.radius - p));
+		norm.Normalise();
+		contactNormal = norm;
 		return true;
 	}
 	return false;
 }
 
 bool PhysicsMaths::CollidesPlaneSphere(const SphereCollider& sphere,
-	const PlaneCollider& plane, PhysVector3& contactNormal, float& penetrationDepth)
+	const PlaneCollider& plane, Vector3& contactNormal, float& penetrationDepth)
 {
-	PhysVector3 norm = plane.normal;
-	float dotProd = PhysVector3::dot(norm, sphere.transform.GetPositionVector());
+	Vector3 norm = plane.normal;
+	float dotProd = Vector3::Dot(norm, sphere.translation);
 
-	if (dotProd + plane.transform.GetPositionVector().Length() < sphere.radius)
+	if (dotProd + plane.translation.Length() < sphere.radius)
 	{
-		//p = r - (N.S + d)
-		penetrationDepth = (sphere.radius - (dotProd + plane.transform.GetPositionVector().Length()));
-		contactNormal = norm.normalise();
+		penetrationDepth = (sphere.radius - (dotProd + plane.translation.Length()));
+		norm.Normalise();
+		contactNormal = norm;
 		return true;
 	}
 	return false;

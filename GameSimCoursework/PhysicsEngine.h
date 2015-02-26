@@ -4,6 +4,12 @@
 
 using namespace std;
 
+struct CollisionPair
+{
+	RigidBody* a;
+	RigidBody* b;
+};
+
 class PhysicsEngine
 {
 public:
@@ -19,6 +25,7 @@ private:
 	const PhysVector3 gravity = PhysVector3(0, -9.81, 0);
 	
 	void updatePositions(float sec);
-	void collisionDetection(float sec);
+	vector<CollisionPair> sortAndSweep();
+	void collisionDetection(vector<CollisionPair> pairs);
 };
 

@@ -46,26 +46,47 @@ void Cube::Update(float sec)
 {
 	bool update = false;
 	Matrix4 t = renderObject.GetModelMatrix();
-
+	Matrix4 rot;
 	if (Keyboard::KeyDown(KeyboardKeys::KEY_L))
 	{
 		update = true;
-		t = Matrix4::Rotation(80 * sec, Vector3(0, 0, 1)) * t;
+		rot = Matrix4::Rotation(80 * sec, Vector3(0, 0, 1));
 	}
 	if (Keyboard::KeyDown(KeyboardKeys::KEY_K))
 	{
 		update = true;
-		t = Matrix4::Rotation(80 * sec, Vector3(1, 0, 0)) * t;
+		rot = rot * Matrix4::Rotation(-80 * sec, Vector3(0, 0, 1));
 	}
+	if (Keyboard::KeyDown(KeyboardKeys::KEY_U))
+	{
+		update = true;
+		rot = rot * Matrix4::Rotation(80 * sec, Vector3(1, 0, 0));
+	}
+	if (Keyboard::KeyDown(KeyboardKeys::KEY_J))
+	{
+		update = true;
+		rot = rot * Matrix4::Rotation(-80 * sec, Vector3(1, 0, 0));
+	}
+	t = rot*t;
 
 	if (update)
 	{
-		rigidBodys[0]->collider->transform = t * Matrix4::Translation(Vector3(-size, 0, 0));
+		for each (RigidBody* r in rigidBodys)
+		{
+			PlaneCollider* p = dynamic_cast<PlaneCollider*>(r->collider);
+			if (p)
+			{
+				//We is a plane, do shit fam
+				p->normal = PhysVector3(rot * Vector3(p->normal.getX(), p->normal.getY(), p->normal.getZ())).normalise();
+				p->transform = rot * p->transform;
+			}
+		}
+		/*rigidBodys[0]->collider->transform = t * Matrix4::Translation(Vector3(-size, 0, 0));
 		rigidBodys[1]->collider->transform = t * Matrix4::Translation(Vector3(0, 0, -size));
 		rigidBodys[2]->collider->transform = t * Matrix4::Translation(Vector3(size, 0, 0)) ;
 		rigidBodys[3]->collider->transform = t * Matrix4::Translation(Vector3(0, 0, size)) ;
 		rigidBodys[4]->collider->transform = t * Matrix4::Translation(Vector3(0, size, 0)) ;
-		rigidBodys[5]->collider->transform = t * Matrix4::Translation(Vector3(0, -size, 0)); 
+		rigidBodys[5]->collider->transform = t * Matrix4::Translation(Vector3(0, -size, 0)); */
 		renderObject.SetModelMatrix(t);
 	}
 }

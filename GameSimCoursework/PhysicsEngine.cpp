@@ -1,7 +1,6 @@
 #include "PhysicsEngine.h"
 #include "PhysicsMaths.h"
 
-
 PhysicsEngine::PhysicsEngine()
 {
 	rigidBodys = vector<RigidBody*>();
@@ -10,13 +9,29 @@ PhysicsEngine::PhysicsEngine()
 void PhysicsEngine::Update(float sec)
 {
 	updatePositions(sec);
-	collisionDetection(sec);
+	vector<CollisionPair> pairs = sortAndSweep();
+	collisionDetection(pairs);
 }
 
 void PhysicsEngine::AddRigidBody(RigidBody* r)
 {
 	rigidBodys.push_back(r);
 }
+
+vector<CollisionPair> PhysicsEngine::sortAndSweep()
+{
+	vector<CollisionPair> pairs = vector<CollisionPair>(); 
+	for each (RigidBody* r in rigidBodys)
+	{
+		r->collider->Project(PhysVector3(1,0,0));
+	}
+	//write custom comparer for mins
+	//std::sort the rigidBodys
+	//sweep (sort of like n^2 loop)
+	return pairs;
+}
+
+
 
 void PhysicsEngine::updatePositions(float sec)
 {
@@ -27,7 +42,7 @@ void PhysicsEngine::updatePositions(float sec)
 	}
 }
 
-void PhysicsEngine::collisionDetection(float sec)
+void PhysicsEngine::collisionDetection(vector<CollisionPair> pairs)
 {
 
 	for (int x = 0; x < rigidBodys.size(); x++)

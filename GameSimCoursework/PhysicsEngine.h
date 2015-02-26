@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include "RigidBody.h"
+#include <algorithm>
+#include "PhysicsMaths.h"
 
 using namespace std;
 
@@ -26,6 +28,7 @@ private:
 	
 	void updatePositions(float sec);
 	vector<CollisionPair> sortAndSweep();
+	static bool compareRigidBodys(const RigidBody* a, const RigidBody* b);
 	void collisionDetection(vector<CollisionPair> pairs);
 };
 

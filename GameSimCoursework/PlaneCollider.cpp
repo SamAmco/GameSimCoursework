@@ -19,22 +19,14 @@ bool PlaneCollider::Collides(PhysVector3& contactNormal, const PlaneCollider& ot
 
 Projection PlaneCollider::Project(const PhysVector3& axis) 
 {
-	float dotProd = PhysVector3::dot(axis, normal);
 	Projection p;
 	
-	if (abs(dotProd) > 0.999f)
-	{
-		Vector3 pos = transform.GetPositionVector();
-		p.max = pos.x + pos.y + pos.z;
-		p.min = p.max;
-	}
-	else
-	{
+	//For most cases we want to planes to be compared with everything.
+	//it is rare that their projection against any axis is not infinite.
 #define DUMMY
-		float m = std::numeric_limits<float>::max DUMMY();
-		p.min = -m;
-		p.max = m;
-	}
+	float m = std::numeric_limits<float>::max DUMMY();
+	p.min = -m;
+	p.max = m;
 
 	projection = p;
 	return p;

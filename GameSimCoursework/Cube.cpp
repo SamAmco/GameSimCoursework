@@ -50,22 +50,12 @@ void Cube::Update(float sec)
 	if (Keyboard::KeyDown(KeyboardKeys::KEY_L))
 	{
 		update = true;
-		rot = Matrix4::Rotation(80 * sec, Vector3(0, 0, 1));
+		rot = Matrix4::Rotation(80 * sec, Vector3(1, 0, 0));
 	}
 	if (Keyboard::KeyDown(KeyboardKeys::KEY_K))
 	{
 		update = true;
 		rot = rot * Matrix4::Rotation(-80 * sec, Vector3(0, 0, 1));
-	}
-	if (Keyboard::KeyDown(KeyboardKeys::KEY_U))
-	{
-		update = true;
-		rot = rot * Matrix4::Rotation(80 * sec, Vector3(1, 0, 0));
-	}
-	if (Keyboard::KeyDown(KeyboardKeys::KEY_J))
-	{
-		update = true;
-		rot = rot * Matrix4::Rotation(-80 * sec, Vector3(1, 0, 0));
 	}
 	t = rot*t;
 

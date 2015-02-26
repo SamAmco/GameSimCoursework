@@ -11,16 +11,16 @@
 
 static Sphere* generateRandomSphere(Renderer& renderer, PhysicsEngine& physicsEngine, Mesh* mesh, Shader* shader)
 {
-	return new Sphere(renderer, physicsEngine, mesh, shader, 1,//max((float)(rand() % 100) / 150.0f, 0.5f),
-		PhysVector3::zero(),
-		PhysVector3::zero(),
-		PhysVector3::zero(),
-		1);// max((float)(rand() % 100) / 25.0f, 1));
-	//return new Sphere(renderer, physicsEngine, mesh, shader, max((float)(rand() % 100) / 150.0f, 0.5f),
+	//return new Sphere(renderer, physicsEngine, mesh, shader, 1,//max((float)(rand() % 100) / 150.0f, 0.5f),
 	//	PhysVector3::zero(),
-	//	PhysVector3((float)(rand() % 100) / 25.0f, (float)(rand() % 100) / 25.0f, (float)(rand() % 100) / 25.0f),
 	//	PhysVector3::zero(),
-	//	max((float)(rand() % 100) / 25.0f, 1));
+	//	PhysVector3::zero(),
+	//	1);// max((float)(rand() % 100) / 25.0f, 1));
+	return new Sphere(renderer, physicsEngine, mesh, shader, max((float)(rand() % 100) / 150.0f, 0.5f),
+		PhysVector3::zero(),
+		PhysVector3((float)(rand() % 100) / 25.0f, (float)(rand() % 100) / 25.0f, (float)(rand() % 100) / 25.0f),
+		PhysVector3::zero(),
+		max((float)(rand() % 100) / 25.0f, 1));
 }
 
 void main(void) 
@@ -45,7 +45,7 @@ void main(void)
 	vector<Sphere*> spheres = vector<Sphere*>();
 
 	float timeCount = 0;
-	int numSpheresToGen = 1;
+	int numSpheresToGen = 15;
 	float timeBetweenSpheres = 0.1f;
 	while(w.UpdateWindow())
 	{

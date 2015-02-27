@@ -86,7 +86,7 @@ void main(void)
 		renderer.SwapBuffers();
 	}
 
-	delete shader;
 	for each (Sphere* s in spheres)
 		delete s;
+	delete shader;
 }

@@ -76,9 +76,10 @@ void Cube::Update(float sec)
 
 Cube::~Cube()
 {
-	delete shader;
 	for each (RigidBody* r in rigidBodys)
 	{
+		delete r->collider;
 		delete r;
 	}
+	delete shader;
 }

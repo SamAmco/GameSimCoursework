@@ -1,0 +1,67 @@
+﻿Build started 27/02/2015 02:48:22.
+     1>Project "C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\GameSimCoursework.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Cube.cpp main.cpp Mesh.cpp PhysicsEngine.cpp PhysicsMaths.cpp PlaneCollider.cpp Renderer.cpp RenderObject.cpp RigidBody.cpp Shader.cpp Sphere.cpp SphereCollider.cpp
+         Cube.cpp
+     1>c:\users\samamco\documents\visual studio 2013\projects\gamesimcoursework\gamesimcoursework\PhysicsEngine.h(32): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>Cube.cpp(16): warning C4018: '<' : signed/unsigned mismatch
+         main.cpp
+     1>c:\users\samamco\documents\visual studio 2013\projects\gamesimcoursework\gamesimcoursework\PhysicsEngine.h(32): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>main.cpp(15): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>main.cpp(35): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>main.cpp(59): warning C4018: '<' : signed/unsigned mismatch
+         Mesh.cpp
+         PhysicsEngine.cpp
+     1>c:\users\samamco\documents\visual studio 2013\projects\gamesimcoursework\gamesimcoursework\PhysicsEngine.h(32): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>PhysicsEngine.cpp(50): warning C4018: '<' : signed/unsigned mismatch
+     1>PhysicsEngine.cpp(52): warning C4018: '<' : signed/unsigned mismatch
+     1>PhysicsEngine.cpp(117): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+         PhysicsMaths.cpp
+         PlaneCollider.cpp
+         Renderer.cpp
+     1>Renderer.cpp(40): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
+         RenderObject.cpp
+         RigidBody.cpp
+         Shader.cpp
+     1>C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GLEW\include\GL/wglew.h(79): warning C4005: 'GLEWAPI' : macro redefinition
+                 C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GLEW\include\GL/glew.h(205) : see previous definition of 'GLEWAPI'
+         Sphere.cpp
+     1>c:\users\samamco\documents\visual studio 2013\projects\gamesimcoursework\gamesimcoursework\PhysicsEngine.h(32): warning C4305: 'argument' : truncation from 'double' to 'const float'
+         SphereCollider.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\Release\GameSimCoursework.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\Release\GameSimCoursework.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\Release\GameSimCoursework.lib" /MACHINE:X86 /SAFESEH Release\Cube.obj
+         Release\main.obj
+         Release\Mesh.obj
+         Release\PhysicsEngine.obj
+         Release\PhysicsMaths.obj
+         Release\PlaneCollider.obj
+         Release\Renderer.obj
+         Release\RenderObject.obj
+         Release\RigidBody.obj
+         Release\Shader.obj
+         Release\Sphere.obj
+         Release\SphereCollider.obj
+     1>MSVCRT.lib(cinitexe.obj) : warning LNK4098: defaultlib 'libcmt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
+         Generating code
+         Finished generating code
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewAttachShader imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewCreateProgram imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewGetProgramInfoLog imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewGetShaderiv imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewDeleteProgram imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewGetProgramiv imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewBindAttribLocation imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewShaderSource imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewGetInfoLogARB imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewDetachShader imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewCompileShader imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewLinkProgram imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewCreateShader imported
+     1>Shader.obj : warning LNK4049: locally defined symbol ___glewDeleteShader imported
+     1>glew32s.lib(glew.obj) : warning LNK4204: 'C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\Release\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+         GameSimCoursework.vcxproj -> C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\Release\GameSimCoursework.exe
+     1>Done Building Project "C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\GameSimCoursework.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:11.96

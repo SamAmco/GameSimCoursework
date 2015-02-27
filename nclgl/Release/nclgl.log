@@ -1,0 +1,17 @@
+﻿Build started 27/02/2015 02:48:21.
+     1>Project "C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\nclgl\nclgl.vcxproj" on node 2 (Build target(s)).
+     1>Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\Release\nclgl.lib" /NOLOGO /LTCG Release\GameTimer.obj
+         Release\Keyboard.obj
+         Release\Matrix3.obj
+         Release\Matrix4.obj
+         Release\Mouse.obj
+         Release\OGLRenderer.obj
+         Release\Quaternion.obj
+         Release\Window.obj
+         nclgl.vcxproj -> C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\GameSimCoursework\Release\nclgl.lib
+     1>Done Building Project "C:\Users\SamAmco\Documents\Visual Studio 2013\Projects\GameSimCoursework\nclgl\nclgl.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.61

@@ -8,5 +8,4 @@ void RigidBody::ApplyMomentum(Vector3 momentum)
 
 RigidBody::~RigidBody()
 {
-	delete collider;
 }

@@ -4,6 +4,8 @@
 #include "PhysicsEngine.h"
 #include "SphereCollider.h"
 
+//A Sphere is a type of RigidBody that also stores information relevant to rendering that RigidBody
+//through the Renderer.
 class Sphere : public RigidBody
 {
 public:

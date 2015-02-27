@@ -11,25 +11,23 @@ Sphere::Sphere(Renderer& renderer,
 	float mass) 
 	: RigidBody(acceleration, velocity, mass), mesh(mesh), shader(shader), size(size), sphereCollider(SphereCollider(size))
 {
-	if (shader->UsingDefaultShader())
-	{
-		cout << "Warning: Using default shader! Your shader probably hasn't worked..." << endl;
-		cout << "Press any key to continue." << endl;
-		std::cin.get();
-	}
+	//Create a RenderObject and add it to the Renderer
 	renderObject = RenderObject(mesh, shader);
 
 	Matrix4 transform = Matrix4();
 	transform.SetPositionVector(position);
 	transform.SetScalingVector(Vector3(size, size, size));
+	renderObject.SetModelMatrix(transform);
+	renderer.AddRenderObject(renderObject);
+
+	//Add the relevant physics objects to the simulation
 	sphereCollider.translation = position;
 	collider = &sphereCollider;
-
-	renderer.AddRenderObject(renderObject);
 	RigidBody* rigidBodyP = this;
 	physicsEngine.AddRigidBody(rigidBodyP);
 }
 
+//Simply adjust the RenderObject to reflect the corresponding physics object.
 void Sphere::Update(float sec)
 {
 	renderObject.SetModelMatrix(Matrix4::Translation(collider->translation) * Matrix4::Scale(Vector3(size, size, size)));

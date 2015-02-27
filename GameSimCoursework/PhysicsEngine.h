@@ -6,12 +6,16 @@
 
 using namespace std;
 
+//This struct is used for storing pairs of RigidBodys that will need to be checked for 
+//collision after running sort and sweep
 struct CollisionPair
 {
 	RigidBody* a;
 	RigidBody* b;
 };
 
+//The physics engine class stores a vector of RigidBodys which it updates each frame.
+//It also defines certain physical rules about the simulation, such as elasticity and gravity
 class PhysicsEngine
 {
 public:
@@ -20,6 +24,7 @@ public:
 
 	void Update(float sec);
 	void AddRigidBody(RigidBody* r);
+	void UnrestAll();
 
 private:
 	vector<RigidBody*> rigidBodys;

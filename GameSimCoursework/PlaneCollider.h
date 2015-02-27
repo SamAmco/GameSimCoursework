@@ -1,6 +1,7 @@
 #pragma once
 #include "Collider.h"
 
+//A plane collider is a type of collider that simply has a normal
 class PlaneCollider : public Collider
 {
 public:

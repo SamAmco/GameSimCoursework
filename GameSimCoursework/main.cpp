@@ -20,8 +20,10 @@ static Sphere* generateRandomSphere(Renderer& renderer, PhysicsEngine& physicsEn
 		mass);
 }
 
+//THE ENTRY POINT FOR THE PROGRAM
 void main(void) 
 {
+	//Initialize the environment
 	Window w = Window(900, 700);
 	Renderer renderer(w);
 	Vector3 lightCol = Vector3(1, 1, 1);
@@ -30,25 +32,29 @@ void main(void)
 	renderer.SetProjectionMatrix(Matrix4::Perspective(1, 100, 1.33f, 45.0f));
 	renderer.SetMainLight(lightCol, lightPos, lightRad);
 	renderer.SetViewMatrix(Matrix4::BuildViewMatrix(Vector3(0, 0, 10), Vector3(0, 0, 0)));
+	srand(time(NULL));
 	PhysicsEngine physicsEngine = PhysicsEngine();
 
+	//these are only loaded once here so that we can generate new spheres quickly without causing long frame times
+	//in the simulation, and therefore glitches in the physics.
 	Cube cube = Cube(renderer, physicsEngine, 3);
 	Mesh* mesh = Mesh::LoadMeshFile("sphere.obj", Vector4(0.75, 0.75, 0.75, 1));
 	Shader* shader = new Shader("Shaders/PhongColVert.glsl", "Shaders/PhongColFrag.glsl");
 
-	srand(time(NULL));
-	rand();
-
 	vector<Sphere*> spheres = vector<Sphere*>();
 
 	float timeCount = 0;
+	//These can be changed to modify the initialization of the scene
 	int numSpheresToGen = 15;
-	float timeBetweenSpheres = 0.1f;
+	float timeBetweenSpheres = 0.2f;
+	
 	while(w.UpdateWindow())
 	{
 		float sec = w.GetTimer()->GetTimedMS() / 1000.0f;
+		//Update the physics engine
 		physicsEngine.Update(sec);
 
+		//Add in more sphere's if we need them
 		timeCount += sec;
 		if (timeCount >= timeBetweenSpheres && spheres.size() < numSpheresToGen)
 		{
@@ -56,10 +62,12 @@ void main(void)
 			timeCount = 0;
 		}
 
+		//Apply an upward force to all spheres if the F key is pressed
 		bool applyUpwardForce = false;
 		if (Keyboard::KeyTriggered(KeyboardKeys::KEY_F))
 			applyUpwardForce = true;
 
+		//Update our spheres
 		for each (Sphere* s in spheres)
 		{
 			if (applyUpwardForce)
@@ -68,14 +76,17 @@ void main(void)
 			s->Update(sec);
 		}
 
+		//Update our cube
 		cube.Update(sec);
 
+		//Update the renderer and handle frame buffers
 		renderer.UpdateScene(sec);
 		renderer.ClearBuffers();
 		renderer.RenderScene();
 		renderer.SwapBuffers();
 	}
 
+	delete shader;
 	for each (Sphere* s in spheres)
 		delete s;
 }

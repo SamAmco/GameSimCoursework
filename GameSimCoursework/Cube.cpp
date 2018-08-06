@@ -5,7 +5,7 @@ Cube::Cube(Renderer& renderer, PhysicsEngine& physicsEngine, float size) :
 renderer(renderer), physicsEngine(physicsEngine), size(size)
 {
 	//Since we only have one cube in the world we can do mesh and shader loading here without a loss of efficiency
-	mesh = Mesh::LoadMeshFile("cube.obj");
+	mesh = Mesh::LoadMeshFile("Meshes/cube.obj");
 	shader = new Shader("Shaders/BasicVert.glsl", "Shaders/WhiteFrag.glsl", "Shaders/WireframeGeom.glsl");
 	renderObject = RenderObject(mesh, shader);
 	renderObject.SetModelMatrix(Matrix4::Scale(Vector3(size, size, size)));

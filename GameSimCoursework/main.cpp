@@ -38,7 +38,7 @@ void main(void)
 	//these are only loaded once here so that we can generate new spheres quickly without causing long frame times
 	//in the simulation, and therefore glitches in the physics.
 	Cube cube = Cube(renderer, physicsEngine, 3);
-	Mesh* mesh = Mesh::LoadMeshFile("sphere.obj", Vector4(0.75, 0.75, 0.75, 1));
+	Mesh* mesh = Mesh::LoadMeshFile("Meshes/sphere.obj", Vector4(0.75, 0.75, 0.75, 1));
 	Shader* shader = new Shader("Shaders/PhongColVert.glsl", "Shaders/PhongColFrag.glsl");
 
 	vector<Sphere*> spheres = vector<Sphere*>();

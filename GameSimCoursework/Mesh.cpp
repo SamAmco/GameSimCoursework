@@ -78,6 +78,7 @@ void Mesh::Draw()	{
 	glBindVertexArray(0);	
 }
 
+//This function is essentially taken from my Game Development coursework
 Mesh*	Mesh::LoadMeshFile(const string &filename, Vector4 colour)
 {
 	using namespace std;
